@@ -2,13 +2,13 @@ defmodule TicTacToe do
 	import Format
 
 	def play do
-    		create_board()
-        	|> game_loop(0, true)
+    	create_board()
+        |> game_loop(0, true)
 	end
 
 	def game_loop(board, player_num, valid) do
-    		num = rem(player_num, 2)
-        	check_win(board, abs(player_num - 1))
+    	num = rem(player_num, 2)
+        check_win(board, abs(player_num - 1))
 
 		IEx.Helpers.clear
 		IO.puts("\nFor help playing, type 'help' or '?'.")
@@ -16,23 +16,23 @@ defmodule TicTacToe do
 		print_board(board)
 
 		if num == 0 do
-    			if valid == false do
-        			IO.puts("Please enter a valid input.")
+    		if valid == false do
+        		IO.puts("Please enter a valid input.")
 				IO.gets("Player 1 (X): ")
 				|> check_input(board, num)
 			end
-			if valid == true do
-				IO.gets("Player 1 (X): ")
-				|> check_input(board, num)
-			end
-		end
+		    if valid == true do
+			    IO.gets("Player 1 (X): ")
+			    |> check_input(board, num)
+		    end
+	    end
 		if num == 1 do
 			if valid == false do
-    				IO.puts("Please enter a valid input.")
-    				IO.gets("Player 2 (O): ")
-    				|> check_input(board, num)
-    			end
-    			if valid == true do
+    			IO.puts("Please enter a valid input.")
+    			IO.gets("Player 2 (O): ")
+    			|> check_input(board, num)
+    		end
+    		if valid == true do
 				IO.gets("Player 2 (O): ")
 				|> check_input(board, num)
 			end
@@ -40,10 +40,10 @@ defmodule TicTacToe do
 	end
 
 	def create_board() do
-    		_board = [" "," "," ",
+    	_board = [" "," "," ",
     			  " "," "," ",
     			  " "," "," "]
-    	end
+    end
 
 	def print_board(board) do
 		IO.puts("\n")
@@ -53,15 +53,15 @@ defmodule TicTacToe do
 	end
 
 	def mark_spot(board, location, player_num) do
-    		if player_num == 0 do
+    	if player_num == 0 do
 			List.replace_at(board, location - 1, "X")
 			|> game_loop(player_num + 1, true)
 		end
 		if player_num == 1 do
-    			List.replace_at(board, location - 1, "O")
-    			|> game_loop(player_num + 1, true)
-    		end
-    	end 
+    		List.replace_at(board, location - 1, "O")
+    		|> game_loop(player_num + 1, true)
+    	end
+    end 
 
     def check_input(input, board, player_num) do
 
@@ -75,8 +75,8 @@ defmodule TicTacToe do
         if new_input == "help" || new_input == "?" do
             help(board, player_num, true)
         end    
+        
         int_input = String.to_integer(new_input)    
-
         if player_num == 0 do
             check_spot(int_input, board, player_num)
             mark_spot(board, int_input, player_num)
