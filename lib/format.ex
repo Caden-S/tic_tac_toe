@@ -14,6 +14,7 @@ defmodule Format do
 		|> Enum.concat([list5])
 	end
 
+	# Spaces in this output are used for CMD formatting
 	def print_reformat(board) do
     		board
     		|> Enum.map(fn [x,y,z] -> IO.puts("           #{x}  |  #{y}  |  #{z}  ") end)
