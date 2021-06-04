@@ -12,6 +12,7 @@ defmodule TicTacToe do
     IO.puts("\n            Tic-Tac-Toe!")
     print_board(game.board)
     IO.puts(game.error)
+
     input =
       IO.gets("Player #{game.player}: ")
       |> String.replace("\n", "")
@@ -41,8 +42,8 @@ defmodule TicTacToe do
 
   def mark_spot(game, location) do
     if spot_taken?(game, location) do
-      IO.puts("Please choose an empty space.")
-      game.board
+      new_game = %{game | error: "Please choose an empty space."}
+      play(new_game)
     else
       List.replace_at(game.board, location - 1, game.player)
     end
