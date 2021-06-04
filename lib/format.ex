@@ -18,7 +18,7 @@ defmodule Format do
 	def print_reformat(board) do
     		board
     		|> Enum.map(fn [x,y,z] -> IO.puts("           #{x}  |  #{y}  |  #{z}  ") end)
-    	end
+    end
 
     def row_reformat(board) do
         _reformat =[[Enum.at(board, 0), Enum.at(board, 1), Enum.at(board, 2)],
